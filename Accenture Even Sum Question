@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class SumOfEvens {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        String inputLine = s.nextLine(); 
+        String[] inputNumbers = inputLine.split(" "); 
+
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : inputNumbers) {
+            numbers.add(Integer.parseInt(number));
+        }
+        int sum = sumOfEvenNumbers(numbers);
+        System.out.println(sum);
+        
+        s.close();
+    }
+
+    public static int sumOfEvenNumbers(List<Integer> numbers) {
+        int sum = 0;
+        for (int num : numbers) {
+            if (num % 2 == 0) {  
+                sum += num; 
+            }
+        }
+        return sum;  // Return the sum of even numbers
+    }
+}
