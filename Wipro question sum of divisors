@@ -1,0 +1,85 @@
+02. Sum of divisors
+
+Problem Statement
+
+You are given an integer n find and print the sum of all of its divisors starting from 1.
+
+Note: Sum lies within the integer range.
+
+Input Format:
+
+The input consists of a single line of input:
+
+hiring Hustle
+
+INGHUTTLE
+
+The line contains a single integer, Le. n.
+
+Input will be read from the STDIN by the candidate
+
+Output Format:
+
+The output will be a single integer, Le. the sum of all its divisors starting from 1. The output will be matched to the candidate's output printed on the STDOUT
+
+Constraints:
+
+0<n<109
+
+Example:
+
+Input:
+
+6
+
+Output:
+
+12
+
+Explanation:
+
+Divisors of 6 are (1, 2, 3, 6)
+
+Sum 1+2+3+612, hence the output is 12.
+
+Sample input
+
+12
+
+Sample Output
+
+20
+________________________________________________________________________________________________________________________
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Deva {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();  // Input number
+        ArrayList<Integer> devs = new ArrayList<>();  // List to store divisors
+        int sum = 0;  // Variable to store sum of divisors
+
+        // Loop to find divisors up to sqrt(n)
+        for (int i = 1; i * i <= n; i++) {
+            if (n % i == 0) {  // Check if i is a divisor
+                devs.add(i);  // Add i to the list
+                sum += i;  // Add i to sum
+
+                // Add n / i if it's a different divisor
+                if (i != n / i) {
+                    devs.add(n / i);
+                    sum += n / i;  // Add n / i to sum
+                }
+            }
+        }
+
+        // Output the divisors
+        System.out.println("Divisors: " + devs);
+        
+        // Output the sum of divisors
+        System.out.println("Sum of divisors: " + sum);
+        
+        s.close();
+    }
+}
