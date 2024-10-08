@@ -1,0 +1,58 @@
+Background:
+An automobile company manufactures both two-wheelers (TW) and four-wheelers (FW). A manager needs to determine the production quantities of both vehicle types based on specific data inputs.
+
+Problem Statement:
+Given the total number of vehicles (two-wheelers + four-wheelers) and the total number of wheels, your task is to find out how many two-wheelers and four-wheelers need to be manufactured according to the following constraints:
+
+Each two-wheeler has 2 wheels.
+Each four-wheeler has 4 wheels.
+Input:
+Two positive integers separated by a new line:
+The first input line contains the total number of vehicles, V (two-wheelers + four-wheelers).
+The second input line contains the total number of wheels, W.
+Constraints:
+The total number of wheels W must be:
+Greater than or equal to 2 (W >= 2).
+An even number (W % 2 == 0).
+The total number of vehicles V must be greater than 0 (V > 0).
+The total number of wheels must be at least double the total number of vehicles (W >= 2 * V).
+Output:
+If the input does not meet the constraints, print:
+"INVALID INPUT"
+example:
+200
+540
+Two Wheelers = 130
+Four Wheelers = 70
+__________________________________________________________________________________________________________________________
+import java.util.Scanner;
+
+class VehicleProduction {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int totalVehicles = scanner.nextInt();
+        int totalWheels = scanner.nextInt();
+
+        if (totalWheels < 2 || totalWheels % 2 != 0 || totalVehicles <= 0 || totalWheels < totalVehicles * 2) {
+            System.out.println("INVALID INPUT");
+            return;
+        }
+
+        boolean found = false;
+
+        for (int twoWheelers = 0; twoWheelers <= totalVehicles; twoWheelers++) {
+            int fourWheelers = totalVehicles - twoWheelers;
+            if (twoWheelers * 2 + fourWheelers * 4 == totalWheels) {
+                System.out.println("Two Wheelers = " + twoWheelers);
+                System.out.println("Four Wheelers = " + fourWheelers);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("INVALID INPUT");
+        }
+
+        scanner.close();
+    }
+}
