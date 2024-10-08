@@ -1,0 +1,20 @@
+class Solution {
+    public int reverse(int x) {
+        int reverse = 0;
+        while(x != 0) {
+            int num = x % 10;
+            
+            // Check if the reversed number will overflow/underflow
+            if (reverse > Integer.MAX_VALUE / 10 || (reverse == Integer.MAX_VALUE / 10 && num > 7)) {
+                return 0; // Overflow case
+            }
+            if (reverse < Integer.MIN_VALUE / 10 || (reverse == Integer.MIN_VALUE / 10 && num < -8)) {
+                return 0; // Underflow case
+            }
+            
+            reverse = reverse * 10 + num;
+            x /= 10;
+        }
+        return reverse;
+    }
+}
