@@ -1,0 +1,85 @@
+Problem Statement: Rat Food Consumption
+In a village, there are a certain number of rats, and each rat requires a specific amount of food units daily. You need to determine whether the food available from various houses is sufficient for all the rats and, if so, how many entries (houses) it takes to meet the food requirement.
+
+Input Format:
+The first line contains an integer r (1 ≤ r ≤ 1000) - the number of rats.
+The second line contains an integer unit (1 ≤ unit ≤ 100) - the food units required per rat.
+The third line contains an integer n (1 ≤ n ≤ 1000) - the number of entries in the food array.
+The fourth line contains n integers, where each integer represents the food units available at each house (0 ≤ food units ≤ 1000).
+Output Format:
+Return -1 if the array of food entries is null or if n is less than or equal to 0.
+Return 0 if the total amount of food from all houses is not sufficient for all the rats.
+Return the count of entries (houses) used to accumulate sufficient food when the sum of food from the houses is greater than or equal to the total required food for the rats.
+
+  input:
+5
+3
+6
+2 3 4 5 1 6
+output:
+5
+Breakdown of the Input:
+Input Parameters:
+
+r (number of rats): 5
+unit (food units per rat): 3
+n (number of food entries): 6
+Food entries: 2, 3, 4, 5, 1, 6
+Calculating Required Food:
+
+Total required food for all rats = r * unit = 5 * 3 = 15
+Processing Food Entries:
+
+The program will accumulate the food from the entries and check if the accumulated food is greater than or equal to 15.
+Iteration Breakdown:
+Iteration 1:
+sum = 0 + 2 = 2 (not enough)
+Iteration 2:
+sum = 2 + 3 = 5 (not enough)
+Iteration 3:
+sum = 5 + 4 = 9 (not enough)
+Iteration 4:
+sum = 9 + 5 = 14 (not enough)
+Iteration 5:
+sum = 14 + 1 = 15 (sufficient)
+___________________________________________________________________________________________________________________
+
+program:
+import java.util.*;
+
+class RatFood {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int r = s.nextInt(); // Number of rats
+        int unit = s.nextInt(); // Food units per rat
+        int n = s.nextInt(); // Number of entries in the food array
+
+        // Check for null or empty array case
+        if (n <= 0) {
+            System.out.println(-1); // Return -1 if the array is null or empty
+            return; // Exit the program
+        }
+
+        int[] arr = new int[n]; // Array to store food consumption
+        for (int i = 0; i < n; i++) {
+            arr[i] = s.nextInt(); // Input food consumption for each house
+        }
+
+        int requiredFood = r * unit; // Total food required for all rats
+        int sum = 0; // Sum of food from all houses
+        int count = 0; // Count of entries checked
+
+        // Check if there's enough food
+        for (int food : arr) {
+            sum += food; // Accumulate food from each house
+            count++; // Increment count for each entry checked
+            if (sum >= requiredFood) {
+                System.out.println(count); // Output count when food requirement is met
+                return; // Exit after finding sufficient food
+            }
+        }
+        
+        System.out.println(0); // Output 0 if total food is insufficient
+        s.close(); // Close the scanner
+    }
+}
