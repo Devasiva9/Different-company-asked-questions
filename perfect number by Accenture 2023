@@ -1,0 +1,83 @@
+**Coding Question: Check for Perfect Number**
+
+A perfect number is a positive integer that is equal to the sum of its proper divisors (excluding the number itself). Your task is to write a program that checks whether a given number is a perfect number.
+
+### Problem Statement:
+Write a Java program that accepts an integer `n` and determines whether it is a perfect number.
+
+### Input:
+- An integer `n` (1 ≤ n ≤ 10^6)
+
+### Output:
+- Print "`n` is a Perfect Number" if the number is a perfect number.
+- Print "`n` is not a Perfect Number" if the number is not a perfect number.
+
+### Example:
+
+#### Input 1:
+```
+28
+```
+
+#### Output 1:
+```
+28 is a Perfect Number
+```
+
+#### Input 2:
+```
+12
+```
+
+#### Output 2:
+```
+12 is not a Perfect Number
+```
+
+### Explanation:
+- For input 28, its divisors (excluding itself) are: 1, 2, 4, 7, and 14. Their sum is 28, hence 28 is a perfect number.
+- For input 12, its divisors (excluding itself) are: 1, 2, 3, 4, and 6. Their sum is 16, hence 12 is not a perfect number.
+
+### Constraints:
+- The number `n` will be a positive integer between 1 and 1,000,000.
+- Your solution should handle large inputs efficiently.
+
+### Task:
+Implement the logic to check for a perfect number.
+
+
+
+___________________________________________________________________________________________________________________________________________________________________________________________________
+import java.util.Scanner;
+
+class PerfectNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();  // Input a number
+
+        if (isPerfectNumber(num)) {
+            System.out.println(num + " is a Perfect Number");
+        } else {
+            System.out.println(num + " is not a Perfect Number");
+        }
+        
+        scanner.close();
+    }
+
+    public static boolean isPerfectNumber(int num) {
+        int sum = 1;  // Start with 1 because 1 is a divisor of every number
+        
+        // Find all divisors and sum them
+        for (int i = 2; i <= Math.sqrt(num); i++) { 
+            if (num % i == 0) {
+                sum += i;  // Add divisor `i`
+                if (i != num / i) {
+                    sum += num / i;  // Add divisor `num / i` if it's not equal to `i`
+                }
+            }
+        }
+        
+        // Check if the sum of divisors equals the number
+        return sum == num && num != 1; // A perfect number is not 1
+    }
+}
