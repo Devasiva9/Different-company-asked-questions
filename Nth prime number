@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class NthPrime {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        
+        int nthPrime = findNthPrime(n);
+        System.out.println(nthPrime);
+        scanner.close(); // Close the scanner
+    }
+
+    public static int findNthPrime(int n) {
+        int count = 0; // Count of prime numbers
+        int num = 1; // Current number to check
+        
+        while (count < n) {
+            num++;
+            if (isPrime(num)) {
+                count++; // Increment count for each prime found
+            }
+        }
+        return num; // Return the n-th prime number
+    }
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false; // Prime numbers are greater than 1
+        }
+        
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false; // Number is divisible, hence not prime
+            }
+        }
+        return true; // Number is prime
+    }
+}
