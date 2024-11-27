@@ -1,15 +1,21 @@
 import java.util.Scanner;
 
-public class ClockProblem {
+public class TimeConversion {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int X = sc.nextInt();
-        int Y = sc.nextInt();
-        
-        int product = X * Y;
-        int result = product % 12;
-        result = (result == 0) ? 12 : result;
-        
-        System.out.println(result);
+
+        // Input: Hours and Minutes in 24-hour format
+        int hours = sc.nextInt();
+        int minutes = sc.nextInt();
+
+        // Determine AM or PM
+        String period = (hours >= 12) ? "PM" : "AM";
+
+        // Convert to 12-hour format
+        hours = (hours % 12 == 0) ? 12 : hours % 12;
+
+        // Output in 12-hour format
+        System.out.printf("%02d:%02d %s\n", hours, minutes, period);
     }
 }
+
