@@ -1,0 +1,78 @@
+
+/*The task of this program is to identify words that rhyme with a given target word from a list. Rhyming words are defined as those that share the same ending (suffix) of a specified length. The program uses the last few characters of the target word and compares them with the last few characters of each word in the list. If the characters match, the words are considered rhyming words.
+
+Steps to Write the Program:
+Input:
+
+You will have an array of words, and a target word. The goal is to find how many words from the array rhyme with the target word.
+For example, given the target word "bat", and a list of words ["cat", "bat", "rat", "dog", "log"], we want to find how many words end with "at", as "bat" ends with "at".
+Suffix Extraction:
+
+To determine if two words rhyme, we need to compare their endings (suffixes). The suffix is simply the last few characters of the word.
+In the case of the target word "bat", we want to compare its last two characters, which are "at".
+Comparison:
+
+For each word in the list, check if the last two characters match the last two characters of the target word.
+If a word’s last two characters match the target word’s last two characters and it’s not the same as the target word itself, it is considered a rhyming word.
+Count Rhyming Words:
+
+Keep a count of how many words from the list rhyme with the target word by comparing their suffixes.
+Return the Result:
+
+Once all words are checked, the program should return or print the number of rhyming words.
+Example:
+Input:
+
+Target word: "bat"
+List of words: ["cat", "bat", "rat", "dog", "log", "mat", "flat", "hat", "car"]
+Suffix of "bat":
+
+The last two characters are "at".
+Words that rhyme with "bat":
+
+"cat", "rat", "mat", "flat", "hat"
+Output:
+
+There are 7 words in the list that rhyme with "bat".
+*/
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    // Method to find words with matching suffixes (rhyming)
+    public static int findRhymes(String[] words, String targetWord) {
+        List<String> rhymes = new ArrayList<>();
+        String targetSuffix = getSuffix(targetWord, 2); // Extract the last 2 letters (you can adjust this value)
+
+        // Compare each word in the list with the target word's suffix
+        for (String word : words) {
+            if (!word.equals(targetWord) && getSuffix(word, 2).equals(targetSuffix)) {
+                rhymes.add(word);
+            }
+        }
+
+        return rhymes.size(); // Return the count of rhyming words
+    }
+
+    // Method to get the suffix (last N characters) of a word
+    private static String getSuffix(String word, int length) {
+        if (word.length() >= length) {
+            return word.substring(word.length() - length);
+        }
+        return word; // If word length is less than the suffix length, return the whole word
+    }
+
+    public static void main(String[] args) {
+        // Sample list of words
+        String[] words = {"cat", "bat", "rat", "dog", "log", "mat", "flat", "hat", "car"};
+
+        // Example target word to find rhymes for
+        String targetWord = "bat";
+
+        // Find rhyming words and print the count
+        System.out.println(findRhymes(words, targetWord)); // Corrected line with a semicolon
+    }
+}
