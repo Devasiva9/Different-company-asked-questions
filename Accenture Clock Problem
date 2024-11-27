@@ -1,0 +1,21 @@
+/*
+Q1. The Clock Problem
+Your friend has problem in reading the time if a clock follows 24-hour fromat, So you deside to help him out. You have two integers X and Y. 
+Your task is to find and return an integer value representing the product of these two integers in the 12-hour System.
+*/
+
+import java.util.Scanner;
+
+public class ClockProblem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int X = sc.nextInt();
+        int Y = sc.nextInt();
+        
+        int product = X * Y;
+        int result = product % 12;
+        result = (result == 0) ? 12 : result;
+        
+        System.out.println(result);
+    }
+}
