@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class ClockProblem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int X = sc.nextInt();
+        int Y = sc.nextInt();
+        
+        int product = X * Y;
+        int result = product % 12;
+        result = (result == 0) ? 12 : result;
+        
+        System.out.println(result);
+    }
+}
