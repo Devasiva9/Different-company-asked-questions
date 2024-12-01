@@ -1,0 +1,45 @@
+/*
+Description:
+
+Given a string s, perform a run-length encoding of the string. The encoding consists of appending the count of consecutive occurrences of each character immediately after that character in the output. Return the encoded string.
+
+Constraints:
+
+1 <= s.length <= 1000
+s consists of lowercase English letters only.
+Examples:
+
+Input:
+
+makefile
+Copy code
+s = "aaabbc"
+Output:
+
+Copy code
+a3b2c1
+*/
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next(); // Read input string
+        StringBuilder output = new StringBuilder();
+
+        int count = 1;
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) == input.charAt(i - 1)) {
+                count++;
+            } else {
+                output.append(input.charAt(i - 1)).append(count);
+                count = 1;
+            }
+        }
+        // Append the last character and its count
+        output.append(input.charAt(input.length() - 1)).append(count);
+
+        System.out.println(output.toString());
+        sc.close();
+    }
+} 
