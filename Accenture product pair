@@ -1,0 +1,46 @@
+/*
+Product Pair
+You are given an integer array A of length N and your task is to find and return an integer value representing  the count of unique pairs whose products are multiples of 3.
+Note: A Unique pair means that the elements must be the same regardless of their order For instance, (1,3) and (3.1) are considered as the same pair
+Input Specification:
+Input1: An integer value N, representing the size of the array
+ input2: An integer array A
+ Output Specification:
+Return an integer value representing the count of unique pairs whose products  are multiples of 3.
+Example 1:
+Input1:4
+input2: (3,6,5,4)
+Output: 5
+*/
+
+
+import java.util.*;
+class Main {
+    public static int Threemulticount(int n,int[] arr)
+    {
+        int count = 0;
+        int m =0;
+        for(int i =0;i<arr.length;i++)
+        {
+            for(int j=i+1;j<arr.length;j++)
+            {
+                m = arr[i]*arr[j];
+                if(m%3==0)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int n = s.nextInt();
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i] = s.nextInt();
+        }
+        System.out.println(Threemulticount(n,arr));
+    }
+}
